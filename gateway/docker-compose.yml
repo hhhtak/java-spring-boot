@@ -1,0 +1,39 @@
+version: '2'
+services:
+#  dbserver:
+#    image: mysql
+#    volumes:
+#      - ./sql:/docker-entrypoint-initdb.d
+#      - mysql-db:/var/lib/mysql
+#    environment:
+#      MYSQL_DATABASE: mydb
+#      MYSQL_USER: sboot
+#      MYSQL_PASSWORD: sboot
+#      MYSQL_ROOT_PASSWORD: root
+#
+  gateway:
+    build: .
+    image: gateway:0.0.1
+#    depends_on:
+#      - dbserver
+    ports:
+      - "8081:8081"
+    volumes:
+      - .:/app
+    environment:
+      JAR_TARGET: demo-0.0.1-SNAPSHOT.jar
+#  myadmin:
+#    image: phpmyadmin/phpmyadmin
+#    depends_on:
+#      - dbserver
+#    environment:
+#      PMA_ARBITRARY: 1
+#      PMA_HOST: dbserver
+#      PMA_USER: root
+#      PMA_PASSWORD: root
+#    ports:
+#      - "1111:80"
+#
+#volumes:
+#  mysql-db:
+#    driver: local
