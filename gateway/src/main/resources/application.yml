@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: express_setpath_route
+          uri: http://localhost:3000
+          predicates:
+            - Path=/express/{segment}
+          filters:
+            - SetPath=/{segment}
+#        - id: springboot_setpath_route
+#          uri: http://localhost:9000
+#          predicates:
+#            - Path=/springboot/{segment}
+#          filters:
+#            - SetPath=/{segment}
