@@ -1,9 +1,5 @@
 # use alpine as base image
-FROM openjdk:11
-
-RUN apt-get update
-#RUN apt-get -y install x86_64-alpine-jdk-11.0.4_11
-ENV JAVA_HOME "/usr/lib/jvm/java11"
+FROM adoptopenjdk/openjdk11:alpine
 
 # recommended by spring boot
 VOLUME /tmp
@@ -13,7 +9,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # jar target
-ENV JAR_TARGET "demo-0.0.1-SNAPSHOT.jar"
+ENV JAR_TARGET "gs-gateway-0.1.0.jar"
 
 # set entrypoint to execute spring boot application
 ENTRYPOINT ["sh","-c","java -jar -Dspring.profiles.active=docker build/libs/${JAR_TARGET}"]
