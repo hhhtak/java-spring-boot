@@ -1,5 +1,3 @@
-# ベースイメージを指定
-# 今回は LTS の 8.9.4 にする
 # alpine は 軽量の linux OS
 FROM node:10.16.3-alpine
 
@@ -13,5 +11,5 @@ RUN npm install -g express-generator@4.16.0
 # ディレクトリを移動する
 WORKDIR /app
 
-# ポート3000番を開放する
-EXPOSE 3000
+# ポート3001番を開放する
+EXPOSE 3001
