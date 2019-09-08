@@ -3,13 +3,13 @@ spring:
     gateway:
       routes:
         - id: express_setpath_route
-          uri: http://express:3000
+          uri: http://express:3001
           predicates:
           - Path=/express/{segment}
           filters:
           - SetPath=/{segment}
         - id: springboot_setpath_route
-          uri: http://localhost:9000
+          uri: http://app:8080
           predicates:
           - Path=/springboot/{segment}
           filters:

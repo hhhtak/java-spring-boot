@@ -8,8 +8,13 @@ ENV NODE_ENV=development
 # 雛形を生成するのに必要なパッケージのインストール
 RUN npm install -g express-generator@4.16.0
 
+COPY app ./
+RUN npm isntall
+
 # ディレクトリを移動する
 WORKDIR /app
 
 # ポート3001番を開放する
 EXPOSE 3001
+
+CMD [ "node", "server.js" ]
