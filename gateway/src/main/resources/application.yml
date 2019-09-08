@@ -8,6 +8,7 @@ spring:
           - Path=/express/{segment}
           filters:
           - SetPath=/{segment}
+          - MyFilter
         - id: springboot_setpath_route
           uri: http://app:8080
           predicates:
