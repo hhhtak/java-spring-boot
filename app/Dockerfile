@@ -7,6 +7,4 @@ WORKDIR /app
 
 ENV JAR_TARGET "app-0.0.1.jar"
 
-EXPOSE 3002
-
 ENTRYPOINT ["sh","-c","java -jar -Dspring.profiles.active=docker build/libs/${JAR_TARGET}"]
