@@ -5,6 +5,7 @@ HELP.md
 **/build/resources
 **/build/test-results
 **/build/tmp
+**/build/generated
 
 ### STS ###
 .apt_generated
