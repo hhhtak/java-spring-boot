@@ -2,16 +2,22 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: express_setpath_route
-          uri: http://express:3001
-          predicates:
-          - Path=/express/{segment}
-          filters:
-          - SetPath=/{segment}
-          - MyFilter
-        - id: springboot_setpath_route
-          uri: http://app:8080
-          predicates:
-          - Path=/springboot/{segment}
-          filters:
-          - SetPath=/{segment}
+      - id: express_setpath_route
+        uri: http://express:3001
+        predicates:
+        - Path=/express/{segment}
+        filters:
+        - SetPath=/{segment}
+        - MyFilter
+      - id: springboot_setpath_route
+        uri: http://app:8080
+        predicates:
+        - Path=/springboot/{segment}
+        filters:
+        - SetPath=/{segment}
+      - id: thymeleaf_setpath_route
+        uri: http://thymeleaf:8080
+        predicates:
+        - Path=/thymeleaf/**
+        filters:
+        - SetPath=/**

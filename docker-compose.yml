@@ -1,18 +1,26 @@
 version: '2'
 services:
-  app:
-    build: app
-    image: app:0.0.1
-    container_name: app
+  gateway:
+    build: gateway
+    image: gateway-app/boot:0.0.1
+    container_name: gateway
     ports:
-      - "8082:8080"
+      - "8080:8080"
+    volumes:
+      - ./gateway:/app
+    tty: true
+    depends_on:
+      - app
+      - express
+      - thymeleaf
+    links:
+      - app
+      - express
     privileged: true
     networks:
       - my_network
-    volumes:
-      - ./app:/app
     environment:
-      JAR_TARGET: app-0.0.1.jar
+      JAR_TARGET: gs-gateway-0.1.0.jar
   express:
     build: express/node
     image: node-express-dev:1.0
@@ -27,26 +35,34 @@ services:
     privileged: true
     networks:
       - my_network
-  gateway:
-    build: gateway
-    image: gateway-app/boot:0.0.1
-    container_name: gateway
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./gateway:/app
+  app:
+    build: app
+    image: app:0.0.1
+    container_name: app
     tty: true
-    depends_on:
-      - app
-      - express
-    links:
-      - app
-      - express
+    ports:
+      - "8082:8080"
     privileged: true
     networks:
       - my_network
+    volumes:
+      - ./app:/app
     environment:
-      JAR_TARGET: gs-gateway-0.1.0.jar
+      JAR_TARGET: app-0.0.1.jar
+  thymeleaf:
+    build: thymeleaf
+    image: thymeleaf:0.0.1
+    container_name: thymeleaf
+    tty: true
+    ports:
+      - "8083:8080"
+    privileged: true
+    networks:
+      - my_network
+    volumes:
+      - ./thymeleaf:/app
+    environment:
+      JAR_TARGET: thymeleaf-0.0.1.jar
 networks:
   my_network:
     external: true
